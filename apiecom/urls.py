@@ -17,16 +17,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from django.views.generic import TemplateView
-from .views import list_category , delete_category , create_category , update_category , get_category
+from .views import list_products, delete_product ,update_product ,get_product ,create_product, list_category , delete_category , create_category , update_category , get_category
 
 qpp_name = 'apiecom'
 
 urlpatterns = [
     # path('/',)
     path('', TemplateView.as_view(template_name='apiecom/index.html')),
-    path('categories' , list_category.as_view() , name='categories_list'), # list of categories
-    path('create-category' , create_category.as_view() , name='create_category'), # create new category
+    path('categories' , list_category.as_view() , name='categories-list'), # list of categories
+    path('create-category' , create_category.as_view() , name='create-category'), # create new category
     path('<int:pk>/update-category' , update_category.as_view() , name='update-category'), # update a category
     path('<int:pk>/category' , get_category.as_view(), name='get-category'), # get category by id
     path('<int:pk>/delete-category' , delete_category.as_view() , name='delete-category'), # delete category by id
+    # Products Api
+    path('products' , list_products.as_view() , name='products-list'), # list of products
+    path('<int:pk>/product' , get_product.as_view() , name='get-product'), # get product by id 
+    path('create-product', create_product.as_view() , name='create-product'), # create a new product
+    path('<int:pk>/update-product' , update_product.as_view() , name='update-product'), # update a product
+    path('<int:pk>/delete-product', delete_product.as_view() , name='delete-product')
 ]
