@@ -3,6 +3,8 @@ from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, D
 from ecom.models import Category, Product
 from .serializers import ListProductSerializer, UpdateProductSerializer , CreateProductSerializer, CategoryByIdSerializer , ListCategorySerializer , CreateCategorySerializer , UpdateCategorySerializer
 from rest_framework.permissions import IsAdminUser
+from rest_framework.views import Response
+from .serializers import ListOfProductSerializer
 
 # Create your views here.
 
@@ -48,5 +50,29 @@ class update_product(UpdateAPIView):
 class delete_product(DestroyAPIView):
     queryset = Product.objects.all()
     # serializer_class = 
+    
+
+# Get product associate to category
+class product_of_category(RetrieveAPIView):
+    queryset = Product.objects.all()
+    
+    def get(self, request, pk , *args, **kwargs):
+        
+        try:
+            category_obj = Category.objects.get(id = pk)
+        except Category.DoesNotExist:
+            return Response({'message':'Category not found'}, status=404)
+        
+        products_concerns = category_obj.product_set.all()
+        
+        products_concerns_serializer = ListOfProductSerializer(products_concerns , many=True)
+        
+        return Response({
+            'id':category_obj.id,
+            'name':category_obj.name,
+            'description':category_obj.description,
+            'products':products_concerns_serializer.data
+        })
+        
     
     

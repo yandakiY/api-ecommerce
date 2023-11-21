@@ -44,12 +44,13 @@ class CategoryByIdSerializer(ModelSerializer):
         ]
 
 
+
+# Product Serializer 
 class CategorySerializer(ModelSerializer):
     
     class Meta:
         model = Category
         fields = '__all__'
-
         
 class ListProductSerializer(ModelSerializer):
     
@@ -66,7 +67,6 @@ class ListProductSerializer(ModelSerializer):
             'categories',
             'price'
         ]
-
 class CreateProductSerializer(ModelSerializer):
     
     name = fields.CharField(source = 'title' , required=True)
@@ -79,12 +79,10 @@ class CreateProductSerializer(ModelSerializer):
             'price',
             'category'
         ]
-        
 
 class UpdateProductSerializer(ModelSerializer):
-    
     name = fields.CharField(source='title', required=True)
-    
+
     class Meta:
         model = Product
         fields = [
@@ -93,3 +91,27 @@ class UpdateProductSerializer(ModelSerializer):
             'category',
             'price'
         ]
+
+# get products for category associate
+
+class ListOfProductSerializer(ModelSerializer):
+    
+    name = fields.CharField(source = 'title' , required= True)
+    
+    class Meta:
+        model = Product
+        fields = [
+            'id',
+            'name',
+            'description',
+            'created',
+            'price'
+        ]
+class ProductForCategory(ModelSerializer):
+    
+    id = fields.CharField()
+    name = fields.CharField()
+    description = fields.CharField()
+    categories = ListOfProductSerializer(many = True)
+    
+   

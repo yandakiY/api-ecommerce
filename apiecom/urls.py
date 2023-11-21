@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from django.views.generic import TemplateView
-from .views import list_products, delete_product ,update_product ,get_product ,create_product, list_category , delete_category , create_category , update_category , get_category
+from .views import list_products, product_of_category ,delete_product ,update_product ,get_product ,create_product, list_category , delete_category , create_category , update_category , get_category
 
 qpp_name = 'apiecom'
 
@@ -34,5 +34,6 @@ urlpatterns = [
     path('<int:pk>/product' , get_product.as_view() , name='get-product'), # get product by id 
     path('create-product', create_product.as_view() , name='create-product'), # create a new product
     path('<int:pk>/update-product' , update_product.as_view() , name='update-product'), # update a product
-    path('<int:pk>/delete-product', delete_product.as_view() , name='delete-product')
+    path('<int:pk>/delete-product', delete_product.as_view() , name='delete-product'),
+    path('<int:pk>/product-of-category' , product_of_category.as_view() , name='product-of-category')
 ]
