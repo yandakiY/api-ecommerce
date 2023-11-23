@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, Serializer
-from ecom.models import Category, Product , Cart
+from ecom.models import Category, Product , Cart , CartItem, Orders
 from rest_framework import fields
 
 
@@ -68,6 +68,8 @@ class ListProductSerializer(ModelSerializer):
             'categories',
             'price'
         ]
+        
+
 class CreateProductSerializer(ModelSerializer):
     
     name = fields.CharField(source = 'title' , required=True)
@@ -119,12 +121,38 @@ class ProductForCategory(ModelSerializer):
     stock = fields.IntegerField()
     categories = ListOfProductSerializer(many = True)
     
-class ListCardSerializer(ModelSerializer):
+
+
+# # Cart item serializers
+# class ProductSerializer(ModelSerializer):
     
-    class Meta:
-        model = Cart
-        fields = [
-            'id',
-            'products',
-            'created'
-        ]
+#     class Meta:
+#         model = Product
+#         fields = '__all__'
+# class ListCartItemSerializer(ModelSerializer):
+    
+#     # products = ProductSerializer(source='product' , many = True)
+#     class Meta:
+#         model = CartItem
+#         fields = [
+#             'id',
+#             'quantity',
+#             'product'
+#         ]
+
+
+
+# class ListCartSerializer(ModelSerializer):
+    
+#     # carts =
+#     class Meta:
+#         model = Cart
+#         fields = '__all__'
+
+# class CreateCartSerializer(ModelSerializer):
+    
+#     class Meta:
+#         model = Cart
+#         fields = [
+#             'carts'
+#         ]

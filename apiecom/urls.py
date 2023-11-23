@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from django.views.generic import TemplateView
-from .views import list_products, product_of_category ,delete_product ,update_product ,get_product ,create_product, list_category , delete_category , create_category , update_category , get_category
+from .views import  list_products, product_of_category ,delete_product ,update_product ,get_product ,create_product, list_category , delete_category , create_category , update_category , get_category
 
 qpp_name = 'apiecom'
 
@@ -35,5 +35,12 @@ urlpatterns = [
     path('create-product', create_product.as_view() , name='create-product'), # create a new product
     path('<int:pk>/update-product' , update_product.as_view() , name='update-product'), # update a product
     path('<int:pk>/delete-product', delete_product.as_view() , name='delete-product'),
-    path('<int:pk>/product-of-category' , product_of_category.as_view() , name='product-of-category')
+    path('<int:pk>/product-of-category' , product_of_category.as_view() , name='product-of-category'),
+    
+    
+    # Cart item
+    # path('list-cart-item', list_cart_item.as_view() , name='list-cart-item'),
+    # # carts
+    # path('list-carts', list_carts.as_view() , name='list-carts'),
+    # path('create-cart' , create_cart.as_view() , name='create-cart')
 ]

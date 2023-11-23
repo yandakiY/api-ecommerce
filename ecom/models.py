@@ -32,7 +32,7 @@ class Product(TitleDescriptionModel , ActivatorModel, TimeStampedModel):
 
 class CartItem(models.Model):
     
-    product = models.ForeignKey(Product , on_delete=models.CASCADE , blank=False, null=False)
+    product = models.ForeignKey(Product , on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     
     def __str__(self) -> str:

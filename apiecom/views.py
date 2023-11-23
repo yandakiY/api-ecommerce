@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView, RetrieveAPIView
-from ecom.models import Category, Product , Cart
-from .serializers import ListProductSerializer, UpdateProductSerializer , CreateProductSerializer, CategoryByIdSerializer , ListCategorySerializer , CreateCategorySerializer , UpdateCategorySerializer
+from ecom.models import Category, Product , Cart , CartItem, Orders
+from .serializers import ListProductSerializer ,UpdateProductSerializer , CreateProductSerializer, CategoryByIdSerializer , ListCategorySerializer , CreateCategorySerializer , UpdateCategorySerializer
 from rest_framework.permissions import IsAdminUser
 from rest_framework.views import Response
 from .serializers import ListOfProductSerializer
@@ -74,9 +74,19 @@ class product_of_category(RetrieveAPIView):
             'products':products_concerns_serializer.data
         })
         
+
+# Card item Api view 
+# class list_cart_item(ListAPIView):
+#     queryset = CartItem.objects.all()
+#     serializer_class = ListCartItemSerializer
     
-# Cards Api View
-class get_cards(ListAPIView):
-    queryset = Cart
-    # serializer_class = ListCardSerializer
-    pass
+    
+
+# # Cards Api View
+# class list_carts(ListAPIView):
+#     queryset = Cart.objects.all()
+#     serializer_class = ListCartSerializer
+
+# class create_cart(CreateAPIView):
+#     queryset =  Cart.objects.all()
+#     serializer_class = CreateCartSerializer
