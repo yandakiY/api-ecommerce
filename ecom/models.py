@@ -29,37 +29,4 @@ class Product(TitleDescriptionModel , ActivatorModel, TimeStampedModel):
     class Meta:
         ordering = ['-id']
         
-
-class CartItem(models.Model):
-    
-    product = models.ForeignKey(Product , on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-    
-    def __str__(self) -> str:
-        return f'{self.product.title} ({self.quantity})'
-
-class Cart(TimeStampedModel, ActivatorModel , modelsId):
-    
-    carts = models.ManyToManyField(CartItem , blank=True , null=True)
-    
-    def __str__(self) -> str:
-        names = ','.join([f'{cart.product.title} ({cart.quantity})' for cart in self.carts.all()])
-        return f'{names}'
-    
-    class Meta:
-        ordering = ['-created']
-        
-
-class Orders(TimeStampedModel, ActivatorModel, modelsId):
-    
-    options = (
-        ('loading' , 'Loading'),
-        ('published', 'Published')
-    )
-    
-    items = models.ForeignKey(Cart , on_delete=models.CASCADE)
-    status = models.CharField(max_length=30,choices=options , default='loading')
-    
-    def __str__(self) -> str:
-        return f'{self.items}'
-    
+   
