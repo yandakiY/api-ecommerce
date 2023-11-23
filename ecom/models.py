@@ -63,5 +63,3 @@ class Orders(TimeStampedModel, ActivatorModel, modelsId):
     def __str__(self) -> str:
         return f'{self.items}'
     
-    # class Meta:
-    #     verbose_
