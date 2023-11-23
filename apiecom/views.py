@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView, RetrieveAPIView
-from ecom.models import Category, Product , Cart , CartItem, Orders
+from ecom.models import Category, Product
 from .serializers import ListProductSerializer ,UpdateProductSerializer , CreateProductSerializer, CategoryByIdSerializer , ListCategorySerializer , CreateCategorySerializer , UpdateCategorySerializer
 from rest_framework.permissions import IsAdminUser
 from rest_framework.views import Response

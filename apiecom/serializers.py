@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, Serializer
-from ecom.models import Category, Product , Cart , CartItem, Orders
+from ecom.models import Category, Product
 from rest_framework import fields
 
 

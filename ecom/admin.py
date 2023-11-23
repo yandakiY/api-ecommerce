@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ecom.models import Category, Product, Cart , CartItem ,Orders
+from ecom.models import Category, Product
 
 # Register your models here.
 
@@ -19,19 +19,19 @@ class ProductAdmin(admin.ModelAdmin):
         return '\n'.join([cat.name for cat in obj.category.all()])
     
 
-@admin.register(CartItem)
-class CartItemAdmin(admin.ModelAdmin):
-    list_display = ['id' , 'product' ,'quantity']
+# @admin.register(CartItem)
+# class CartItemAdmin(admin.ModelAdmin):
+#     list_display = ['id' , 'product' ,'quantity']
     
-@admin.register(Cart)
-class CartAdmin(admin.ModelAdmin):
+# @admin.register(Cart)
+# class CartAdmin(admin.ModelAdmin):
     
-    list_display = ['id', 'created', 'items']
+#     list_display = ['id', 'created', 'items']
     
-    def items(self , obj):
-        return "\n - ".join([cart.product.title for cart in obj.carts.all()])
+#     def items(self , obj):
+#         return "\n - ".join([cart.product.title for cart in obj.carts.all()])
 
-@admin.register(Orders)
-class OrdersAdmin(admin.ModelAdmin):
+# @admin.register(Orders)
+# class OrdersAdmin(admin.ModelAdmin):
     
-    list_display = ['id' , 'created' , 'items']
+#     list_display = ['id' , 'created' , 'items']
